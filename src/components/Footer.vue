@@ -2,7 +2,7 @@
 
 <template>
   <div class="py-12 items-center h-[150px] bg-gray-900 font-poppins">
-    <div class="flex justify-between">
+    <div class="flex justify-between flex-wrap">
       <div>
         <div class="mx-32 text-white text-base font-semibold leading-[30px]">
           Join our newsletter

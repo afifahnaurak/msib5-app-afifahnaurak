@@ -32,7 +32,7 @@ const modules = [Navigation, Autoplay];
         </div>
       </div>
     </div>
-    <div class="flex justify-between my-6 md:mx-32">
+    <div class="flex justify-between my-6 mx-32 md:mx-32">
       <div class="font-poppins font-bold text-secondary text-lg">
         Categories
       </div>
@@ -43,7 +43,7 @@ const modules = [Navigation, Autoplay];
         <img src="/src/assets/Arrow-Right.svg" width="20" />
       </div>
     </div>
-    <div class="px-32 pb-20 flex justify-between">
+    <div class="px-32 pb-20 flex justify-between flex-wrap">
       <div
         class="place-items-center text-center"
         v-for="item in categories"
