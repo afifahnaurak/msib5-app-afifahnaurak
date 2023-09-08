@@ -6,7 +6,7 @@ export type TTodo = {
   id: number
   title: string
   userId: number
-  isHovered: boolean // New property for hover state
+  isHovered: boolean
 }
 
 export const useTodoStore = defineStore('todo', {
@@ -26,30 +26,45 @@ export const useTodoStore = defineStore('todo', {
         )
 
         this.todos = response.data.map((todo: TTodo) => ({ ...todo, isHovered: false }))
-      } catch (_) {
-        //
-      }
+      } catch (error) {
+        console.error(error);
+    }
     },
     async addTodo(newTodo: TTodo) {
       try {
-        this.todos.unshift(newTodo)
-      } catch (_) {
-        //
-      }
+        const response = await axios.post(
+          'https://jsonplaceholder.typicode.com/todos',
+          newTodo
+        )
+        this.todos.unshift(response.data)
+      } catch (error) {
+        console.error(error);
+    }
+    },
+    async updateTodo(updatedTodo: TTodo) {
+      try {
+        await axios.put(
+          `https://jsonplaceholder.typicode.com/todos/${updatedTodo.id}`,
+          updatedTodo
+        )
+      } catch (error) {
+        console.error(error);
+    }
+    },
+    async deleteTodo(todoId: number) {
+      try {
+        await axios.delete(`https://jsonplaceholder.typicode.com/todos/${todoId}`)
+        this.todos = this.todos.filter(todo => todo.id !== todoId)
+      } catch (error) {
+        console.error(error);
+    }
     },
     async clearCompletedTodos() {
       try {
         this.todos = this.todos.filter(todo => !todo.completed);
-      } catch (_) {
-        //
-      }
-    },
-    async deleteTodo(todoId: number) {
-      try {
-        this.todos = this.todos.filter(todo => todo.id !== todoId)
-      } catch (_) {
-        //
-      }
+      } catch (error) {
+        console.error(error);
+    }
     },
   },
 })

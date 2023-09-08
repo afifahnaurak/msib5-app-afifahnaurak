@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { ref, computed, onMounted } from 'vue'
-  import { useTodoStore, TTodo } from '../store/todo.store'
+  import { useTodoStore, TTodo } from '../../store/todo.store'
   
   import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
   import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
@@ -19,7 +19,7 @@
     if (newTodoTitle.value.trim() !== '') {
       const newTodo = {
         completed: false,
-        id: Date.now(),
+        id: Math.random(),
         title: newTodoTitle.value,
         userId: 1,
         isHovered: false,
@@ -33,9 +33,9 @@
 
   const validateAddTodo = async () => {
     if (newTodoTitle.value.trim() === '') {
-      alert('Please fill title!');
+      alert('Please fill title!')
     } else {
-      await addTodo();
+      await addTodo()
     }
   }
   
@@ -54,15 +54,15 @@
   })
   
   const deleteTodo = async (todo: TTodo) => {
-  await todoStore.deleteTodo(todo.id)
-}
-
+    await todoStore.deleteTodo(todo.id)
+  }
   
 </script>
 
 <template>
+  <hr class="w-10/12 mx-auto my-auto">
     <div class="w-10/12 text-base mx-auto my-4">
-      <h1 class="font-poppins font-thin text-8xl text-center my-7">
+      <h1 class="font-poppins font-thin text-8xl text-center text-white my-7">
         Todos
       </h1>
       <form @submit.prevent="validateAddTodo" class="input-container">
@@ -78,11 +78,11 @@
         />
         </div>
       </form>
-      <div class="flex items-center justify-between py-4 font-poppins">
+      <div class="flex items-center justify-between py-4 font-poppins text-white">
         <div>
           {{ remainingItemCount }} Item Left
         </div>
-        <div>
+        <div class="text-white">
             <button class="font-poppins rounded-lg mx-1 w-16 h-10 button1" @click="filter = 'all'" :class="{ 'border': filter === 'all' }">All</button>
             <button class="font-poppins rounded-lg mx-1 w-24 h-10 button1" @click="filter = 'active'" :class="{ 'border': filter === 'active' }">Active</button>
             <button class="font-poppins rounded-lg mx-1 w-32 h-10 button1" @click="filter = 'completed'" :class="{ 'border': filter === 'completed' }">Completed</button>
@@ -96,7 +96,7 @@
             <li
             v-for="todo in filteredTodos"
             :key="todo.id"
-            class="box-border bg-zinc-800 w-full py-10 px-6 my-2 border-transparent rounded shadow-lg"
+            class="box-border bg-zinc-800 w-full py-10 px-6 my-2 border-transparent rounded shadow-lg text-white"
             @mouseenter="todo.isHovered = true"
             @mouseleave="todo.isHovered = false"
             >

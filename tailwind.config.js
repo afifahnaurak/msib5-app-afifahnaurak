@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const colors = require('tailwindcss/colors');
+
 export default {
   darkMode: 'class',
   content: [
@@ -10,6 +13,9 @@ export default {
       center: true,
     },
     colors: {
+      ...colors,
+      primary: '#DBEEFD',
+      secondary: '#022338',
       transparent: 'transparent',
       current: 'currentColor',
       'white': '#ffffff',
